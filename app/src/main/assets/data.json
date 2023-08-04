@@ -1,0 +1,19 @@
+[
+  {
+    "name" : "Anon",
+    "country" : "Malaysia",
+    "age" : 23
+  },
+  {
+    "name" : "Lisa",
+    "country" : "UK",
+    "age" : 25
+  },
+  {
+    "name" : "Alan",
+    "country" : "USA",
+    "age" : 34
+  }
+
+
+]

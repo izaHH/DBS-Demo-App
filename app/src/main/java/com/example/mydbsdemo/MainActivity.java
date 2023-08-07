@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //assign  values to each control layout
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.btn_login);
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (email.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
                     Log.d("Login", "Login Successful!");
+
+
 
                     Intent i = new Intent(getApplicationContext(), MainDashboard.class);
                     startActivity(i);

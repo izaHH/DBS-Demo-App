@@ -1,6 +1,9 @@
 package com.example.mydbsdemo;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.style.TabStopSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,15 +24,18 @@ import java.util.List;
 public class MasterClass extends AppCompatActivity {
 
     Button myButton;
-    private JSONArray jsonData;
-    private List<JSONObject> buttonEvents = new ArrayList<>();
+    JSONArray jsonData;
+    JSONObject jsonObj;
+    List<JSONObject> buttonEvents = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //cal out loadJson
-        loadJson();
+//        loadJson(getContext());
+        Log.d("TAG", "json is loaded");
+
         myButton = findViewById(R.id.btn_login);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,20 +57,28 @@ public class MasterClass extends AppCompatActivity {
 
     }
 
-    private void loadJson() {
+    public void loadJson(Context context) {
+        //Initialize jsonData by loading from data.json
         try {
             //Load data.json file
-            InputStream inputStream = getAssets().open("data.json");
+            Log.d("TAG", "DATA START TO LOAD");
+            AssetManager am = context.getAssets();
+            InputStream inputStream = am.open("data.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);
             inputStream.close();
+            Log.d("TAG", "DATA LOADED");
 
-            jsonData = new JSONArray(new String(buffer, StandardCharsets.UTF_8));
+
+            jsonObj = new JSONObject(new String(buffer, StandardCharsets.UTF_8));
+            Log.d("kasatria", "jsonData is loaded");
+            Log.d("kasatria", jsonObj.toString(2));
+
 
         } catch (Exception e) {
-            e.printStackTrace();
-            //Log.e("TAG","loadJson: error"+e);
+            //e.printStackTrace();
+            Log.e("TAG","loadJson: error"+e);
 
         }
 
@@ -75,7 +89,7 @@ public class MasterClass extends AppCompatActivity {
         for (int i = 0; i < jsonData.length(); i++) {
             try {
 
-                //checks if event data exists in JSON data from file or API
+                //checks if event data exists in JSON data from file or APIss
                 JSONObject jsonEvent = jsonData.getJSONObject(i);
                 if (jsonEvent.toString().equals(eventData.toString())) {
                     eventData.put("isConfirmed", true);
@@ -83,6 +97,7 @@ public class MasterClass extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e("TAG","loadJson: event exist"+e);
 
             }
         }
@@ -151,12 +166,5 @@ public class MasterClass extends AppCompatActivity {
 //        return false; //If no match found
 //    }
 
-    //Log event
-//    private static void logData(String timestamp, String eventName, String eventAction, String email){
-//        System.out.println("Timestamp: " + timestamp);
-//        System.out.println("Event: " + eventName);
-//        System.out.println("Action: " + eventAction);
-//        System.out.println("Email ID: " + email);
-//    }
 
 }

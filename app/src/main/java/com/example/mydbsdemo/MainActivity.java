@@ -27,13 +27,15 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.btn_login);
 
+        MasterClass test_class = new MasterClass();
+//        test_class.onCreate(savedInstanceState);
+        test_class.loadJson(this);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (email.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
                     Log.d("Login", "Login Successful!");
-
-
 
                     Intent i = new Intent(getApplicationContext(), MainDashboard.class);
                     startActivity(i);

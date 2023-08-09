@@ -1,20 +1,36 @@
 {
-
-    "users": [
-      {
-        "name": "Anon",
-        "country": "Malaysia",
-        "age": 23
-      },
-      {
-        "name": "Lisa",
-        "country": "UK",
-        "age": 25
-      },
-      {
-        "name": "Alan",
-        "country": "USA",
-        "age": 34
-      }
-    ]
+  "events": [
+    {
+      "event": "Button Clicked",
+      "timestamp": 1679835600000,
+      "user_id": 123
+    },
+    {
+      "event": "Page View",
+      "timestamp": 1679835700000,
+      "user_id": 456
+    },
+    {
+      "event": "Button Clicked",
+      "timestamp": 1679835800000,
+      "user_id": 789
+    }
+  ],
+  "users": [
+    {
+      "id": 123,
+      "name": "John",
+      "country": "USA"
+    },
+    {
+      "id": 456,
+      "name": "Lisa",
+      "country": "Singapore"
+    },
+    {
+      "id": 789,
+      "name": "Bob",
+      "country": "UK"
+    }
+  ]
 }
